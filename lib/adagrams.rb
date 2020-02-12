@@ -60,3 +60,31 @@ def score_word(word)
   end    
   return score
 end
+
+
+# Added feature for Wave 4 here:
+
+def highest_score_from(words)
+  contestants = {}
+
+  words.each do |word|
+    contestants[word] = score_word(word)
+  end 
+
+  winning_word = {word: "", score: 0}
+  contestants.each do |word, score|
+    if score > winning_word[:score]
+      winning_word = {word: word, score: score}
+    elsif score == winning_word[:score] 
+      if winning_word[:word].length == 10
+        next
+      elsif word.length == 10
+        winning_word = {word: word, score: score}
+      elsif word.length < winning_word[:word].length
+        winning_word = {word: word, score: score}
+      end
+    end
+    
+  end
+  return winning_word
+end 
