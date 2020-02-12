@@ -1,3 +1,5 @@
+require 'csv'
+
 # Added feature for Wave 1 here:
 def draw_letters
   letter_pool = {
@@ -87,4 +89,16 @@ def highest_score_from(words)
     
   end
   return winning_word
+end 
+
+
+# Added feature for Wave 5 here:
+
+def is_in_english_dict?(input)
+  input.downcase! 
+
+  dictionary = CSV.read("assets/dictionary-english.csv")
+  dictionary = dictionary.flatten
+
+  dictionary.include?(input) ? true : false
 end 
