@@ -13,3 +13,24 @@ def draw_letters
 
   return hand.sample(10)
 end
+
+
+# Added feature for Wave 2 here:
+def uses_available_letters?(input, letters_in_hand)
+
+  # edge case
+  return false if input.length > 10 || input.length < 1 
+
+  temp_array = letters_in_hand.clone
+
+  input.upcase!
+  user_input_array = input.split("")
+
+  user_input_array.each do |letter, i|
+    return false if !temp_array.include?(letter)   
+
+    # Delete a letter that was used from <temp_array>
+    temp_array.delete(letter) 
+  end 
+  return true
+end
