@@ -34,3 +34,29 @@ def uses_available_letters?(input, letters_in_hand)
   end 
   return true
 end
+
+
+# Added feature for Wave 3 here:
+def score_word(word) 
+  points = {
+    ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"] => 1,
+    ["D", "G"] => 2,
+    ["B", "C", "M", "P"] => 3,
+    ["F", "H", "V", "W", "Y"] => 4,
+    ["K"] => 5,
+    ["J", "X"] => 8,
+    ["Q", "Z"] => 10
+  }
+
+  score = 0 
+  score += 8 if (word.length > 6) && (word.length < 11) 
+
+  user_input_array = word.upcase.split("")
+
+  user_input_array.each do |letter| 
+    points.each do |score_chart, point|
+      score += point if score_chart.include?(letter) 
+    end 
+  end    
+  return score
+end
