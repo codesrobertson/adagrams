@@ -67,11 +67,7 @@ end
 # Added feature for Wave 4 here:
 
 def highest_score_from(words)
-  contestants = {}
-
-  words.each do |word|
-    contestants[word] = score_word(word)
-  end 
+  contestants = words.map{ |word| [word, score_word(word)] }.to_h
 
   winning_word = {word: "", score: 0}
   contestants.each do |word, score|
